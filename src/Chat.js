@@ -11,14 +11,12 @@ const Chat = (props) => {
 
     const sendMessage = async () => {
       
-        if(message !=='') {
+        if(message !== '') {
             const messageData = {
                 room:props.room,
                 user:props.username,
                 message:message,
-                time:new Date(Date.now()).getHours() +':'+ new Date(Date.now()).getMinutes()
-
-                
+                time:new Date(Date.now()).getHours() +':'+ new Date(Date.now()).getMinutes()                
             }
             await socket.emit('send_message',messageData)
             setMessageList((list) => {console.log('List is:',list);return[...list,messageData]})
